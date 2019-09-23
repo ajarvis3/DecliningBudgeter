@@ -127,10 +127,11 @@ class MainActivity : FragmentActivity(), AdapterView.OnItemSelectedListener {
         val numberFormat = NumberFormat.getCurrencyInstance()
         val firstDay = SimpleDateFormat("MM-dd-yyyy").parse(account.first)
         val lastDay = SimpleDateFormat("MM-dd-yyyy").parse(account.last)
-        val numToToday = TimeUnit.DAYS.convert(today.time - firstDay.time, TimeUnit.MILLISECONDS).toInt()
-        val daysLeft = TimeUnit.DAYS.convert(lastDay.time - today.time, TimeUnit.MILLISECONDS).toInt()
+        val numToToday = TimeUnit.DAYS.convert(today.time - firstDay.time, TimeUnit.MILLISECONDS).toInt() + 1
+        val daysLeft = TimeUnit.DAYS.convert(lastDay.time - today.time, TimeUnit.MILLISECONDS).toInt() + 1
 
         // Things calculated that I care about
+        // else cases should never occur, but just to be safe
         val avgSpent = if (numToToday != 0) purchaseValue/numToToday else purchaseValue
         val avgSpend = if (daysLeft != 0) moneyLeft/daysLeft else moneyLeft
 
